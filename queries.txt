@@ -1,0 +1,50 @@
+Simple queries:
+
+ 1.		select the total number of SYNSETs
+ 2.		select the total number of LITERALs
+ 3.		select the total number of ILRs (relations)
+ 4.		select the number of distinct LITERALs
+ 5.		select the number of distinct ILR TYPEs
+ 6.		select the number of SENSEs for each LITERAL having at least two SENSEs
+ 7.		select the number of ILRs for each SYNSET having at least two ILRs
+ 8.		select the number of ILRs for SYNSET with given ID value
+ 9.		select the number of ILRs including SYNSET with given ID value
+		(In other words the query requires to find all ILRs referring to the SYNSET with given ID)
+10.		select the number of LITERALs for each SYNSET having at least two LITERALs
+11.		select the number of hypernyms for SYNSETs having at least two hypernyms
+		(In other words the query requires to find all SYNSETs having at least two ILRs with the 'hypernym' ILR TYPE)
+12.		select the number of SYNSETs containing at least one LITERAL belonging to set X
+13.		select the number of LITERALs for SYNSET with given ID value
+14.		select the number of ILRs for SYNSETs containing LITERALs starting with prefix X
+
+Note 1: Queries 1-3 can be performed with the use of COUNT clause available in SQL and XPath.
+Note 2: Queries 4-7, 10, 11 require XPath to perform two queries, due to the lack of support for DISTINCT and GROUP BY clauses.
+Note 3: IDs in queries 8, 9, 13 were selected at random. The set of literals X in query 12 was selected at random. 
+		The prefix X in query 14 was selected at random.
+
+Complex queries:
+
+ 1.		select maximum hypernym-path length
+		(The query requires to identify all bottommost SYNSETs, i.e. SYNSETs without hyponyms. 
+		 Then it requires to follow the ILR paths from each of these SYNSETs to their topmost SYNSETs, 
+		 i.e. SYNSETs without hypernyms. Finally, the maximum length of such path needs to be found.)
+		 
+ 2.		select SYNSET having the fewest hyponym-paths
+		(The query requires to identify all topmost SYNSETs, i.e. SYNSETs without hypernyms. 
+		 Then it requires to follow the ILR paths from each of these SYNSETs to their bottommost SYNSETs, 
+		 i.e. SYNSETs without hyponyms. Finally, the SYNSET having the minimum number of such path needs to be found.)
+		 
+ 3.		select synset having the most hyponym-paths
+		(The query requires to identify all topmost SYNSETs, i.e. SYNSETs without hypernyms. 
+		 Then it requires to follow the ILR paths from each of these SYNSETs to their bottommost SYNSETs, 
+		 i.e. SYNSETs without hyponyms. Finally, the SYNSET having the maximum number of such path needs to be found.)
+		 
+ 4.		select synset having the fewest hypernym-paths
+		(The query requires to identify all bottommost SYNSETs, i.e. SYNSETs without hyponyms. 
+		 Then it requires to follow the ILR paths from each of these SYNSETs to their topmost SYNSETs, 
+		 i.e. SYNSETs without hypernyms. Finally, the SYNSET having the minimum number of such path needs to be found.)
+		 
+ 5.		select synset having the most hypernym-paths
+		(The query requires to identify all bottommost SYNSETs, i.e. SYNSETs without hyponyms. 
+		 Then it requires to follow the ILR paths from each of these SYNSETs to their topmost SYNSETs, 
+		 i.e. SYNSETs without hypernyms. Finally, the SYNSET having the maximum number of such path needs to be found.)
